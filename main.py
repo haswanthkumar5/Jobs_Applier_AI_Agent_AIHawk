@@ -1,6 +1,3 @@
-Sure, I'll provide the complete updated `main.py` file with the necessary modifications for Indeed integration.
-
-```python name=main.py
 import base64
 import sys
 from pathlib import Path
