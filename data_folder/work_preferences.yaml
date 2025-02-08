@@ -1,7 +1,4 @@
 remote: true
-hybrid: true
-onsite: true
-
 experience_level:
   internship: false
   entry: true
@@ -9,39 +6,31 @@ experience_level:
   mid_senior_level: true
   director: false
   executive: false
-
 job_types:
   full_time: true
   contract: false
   part_time: false
-  temporary: true
+  temporary: false
   internship: false
   other: false
-  volunteer: true
-
+  volunteer: false
 date:
   all_time: false
   month: false
-  week: false
-  24_hours: true
-
+  week: true
+  24_hours: false
 positions:
-  - Software engineer
-
+  - "Salesforce Developer"
+  - "Junior Salesforce Developer"  # Added entry level position
+  - "Entry Level Salesforce Developer"  # Added entry level position
+  - "Associate Salesforce Developer"    # Added entry level position
+  - "Senior Salesforce Developer"
+  - "Salesforce Technical Lead"
 locations:
-  - Germany
-
-apply_once_at_company: true
-
-distance: 100
-
-company_blacklist:
-  - wayfair
-  - Crossover
-
-title_blacklist:
-  - word1
-  - word2
-
-location_blacklist:
-  - Brazil
+  - "Jersey City"
+  - "New York"
+  - "Remote"
+location_blacklist: []
+distance: 25
+company_blacklist: []
+title_blacklist: []
