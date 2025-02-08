@@ -1,3 +1,6 @@
+Sure, I'll provide the complete updated `main.py` file with the necessary modifications for Indeed integration.
+
+```python name=main.py
 import base64
 import sys
 from pathlib import Path
@@ -22,15 +25,10 @@ from src.utils.constants import (
     SECRETS_YAML,
     WORK_PREFERENCES_YAML,
 )
-# from ai_hawk.bot_facade import AIHawkBotFacade
-# from ai_hawk.job_manager import AIHawkJobManager
-# from ai_hawk.llm.llm_manager import GPTAnswerer
-
 
 class ConfigError(Exception):
     """Custom exception for configuration-related errors."""
     pass
-
 
 class ConfigValidator:
     """Validates configuration and secrets YAML files."""
@@ -180,7 +178,6 @@ class ConfigValidator:
 
         return secrets["llm_api_key"]
 
-
 class FileManager:
     """Handles file system operations and validations."""
 
@@ -216,7 +213,6 @@ class FileManager:
 
         return uploads
 
-
 def create_cover_letter(parameters: dict, llm_api_key: str):
     """
     Logic to create a CV.
@@ -224,7 +220,7 @@ def create_cover_letter(parameters: dict, llm_api_key: str):
     try:
         logger.info("Generating a CV based on provided parameters.")
 
-        # Carica il resume in testo semplice
+        # Load the plain text resume
         with open(parameters["uploads"]["plainTextResume"], "r", encoding="utf-8") as file:
             plain_text_resume = file.read()
 
@@ -254,7 +250,7 @@ def create_cover_letter(parameters: dict, llm_api_key: str):
             else:
                 logger.warning("No style selected. Proceeding with default style.")
         questions = [
-    inquirer.Text('job_url', message="Please enter the URL of the job description:")
+            inquirer.Text('job_url', message="Please enter the URL of the job description:")
         ]
         answers = inquirer.prompt(questions)
         job_url = answers.get('job_url')
@@ -273,20 +269,20 @@ def create_cover_letter(parameters: dict, llm_api_key: str):
         resume_facade.link_to_job(job_url)
         result_base64, suggested_name = resume_facade.create_cover_letter()         
 
-        # Decodifica Base64 in dati binari
+        # Decode Base64 to binary data
         try:
             pdf_data = base64.b64decode(result_base64)
         except base64.binascii.Error as e:
             logger.error("Error decoding Base64: %s", e)
             raise
 
-        # Definisci il percorso della cartella di output utilizzando `suggested_name`
+        # Define the output directory using `suggested_name`
         output_dir = Path(parameters["outputFileDirectory"]) / suggested_name
 
-        # Crea la cartella se non esiste
+        # Create the directory if it doesn't exist
         try:
             output_dir.mkdir(parents=True, exist_ok=True)
-            logger.info(f"Cartella di output creata o già esistente: {output_dir}")
+            logger.info(f"Output directory created or already exists: {output_dir}")
         except IOError as e:
             logger.error("Error creating output directory: %s", e)
             raise
@@ -295,14 +291,13 @@ def create_cover_letter(parameters: dict, llm_api_key: str):
         try:
             with open(output_path, "wb") as file:
                 file.write(pdf_data)
-            logger.info(f"CV salvato in: {output_path}")
+            logger.info(f"CV saved at: {output_path}")
         except IOError as e:
             logger.error("Error writing file: %s", e)
             raise
     except Exception as e:
         logger.exception(f"An error occurred while creating the CV: {e}")
         raise
-
 
 def create_resume_pdf_job_tailored(parameters: dict, llm_api_key: str):
     """
@@ -311,7 +306,7 @@ def create_resume_pdf_job_tailored(parameters: dict, llm_api_key: str):
     try:
         logger.info("Generating a CV based on provided parameters.")
 
-        # Carica il resume in testo semplice
+        # Load the plain text resume
         with open(parameters["uploads"]["plainTextResume"], "r", encoding="utf-8") as file:
             plain_text_resume = file.read()
 
@@ -358,20 +353,20 @@ def create_resume_pdf_job_tailored(parameters: dict, llm_api_key: str):
         resume_facade.link_to_job(job_url)
         result_base64, suggested_name = resume_facade.create_resume_pdf_job_tailored()         
 
-        # Decodifica Base64 in dati binari
+        # Decode Base64 to binary data
         try:
             pdf_data = base64.b64decode(result_base64)
         except base64.binascii.Error as e:
             logger.error("Error decoding Base64: %s", e)
             raise
 
-        # Definisci il percorso della cartella di output utilizzando `suggested_name`
+        # Define the output directory using `suggested_name`
         output_dir = Path(parameters["outputFileDirectory"]) / suggested_name
 
-        # Crea la cartella se non esiste
+        # Create the directory if it doesn't exist
         try:
             output_dir.mkdir(parents=True, exist_ok=True)
-            logger.info(f"Cartella di output creata o già esistente: {output_dir}")
+            logger.info(f"Output directory created or already exists: {output_dir}")
         except IOError as e:
             logger.error("Error creating output directory: %s", e)
             raise
@@ -380,7 +375,7 @@ def create_resume_pdf_job_tailored(parameters: dict, llm_api_key: str):
         try:
             with open(output_path, "wb") as file:
                 file.write(pdf_data)
-            logger.info(f"CV salvato in: {output_path}")
+            logger.info(f"CV saved at: {output_path}")
         except IOError as e:
             logger.error("Error writing file: %s", e)
             raise
@@ -388,6 +383,88 @@ def create_resume_pdf_job_tailored(parameters: dict, llm_api_key: str):
         logger.exception(f"An error occurred while creating the CV: {e}")
         raise
 
+def create_resume_pdf_job_tailored_for_indeed(parameters: dict, llm_api_key: str):
+    """
+    Logic to create a CV tailored for an Indeed job description.
+    """
+    try:
+        logger.info("Generating a CV tailored for Indeed based on provided parameters.")
+
+        # Load the plain text resume
+        with open(parameters["uploads"]["plainTextResume"], "r", encoding="utf-8") as file:
+            plain_text_resume = file.read()
+
+        style_manager = StyleManager()
+        available_styles = style_manager.get_styles()
+
+        if not available_styles:
+            logger.warning("No styles available. Proceeding without style selection.")
+        else:
+            # Present style choices to the user
+            choices = style_manager.format_choices(available_styles)
+            questions = [
+                inquirer.List(
+                    "style",
+                    message="Select a style for the resume:",
+                    choices=choices,
+                )
+            ]
+            style_answer = inquirer.prompt(questions)
+            if style_answer and "style" in style_answer:
+                selected_choice = style_answer["style"]
+                for style_name, (file_name, author_link) in available_styles.items():
+                    if selected_choice.startswith(style_name):
+                        style_manager.set_selected_style(style_name)
+                        logger.info(f"Selected style: {style_name}")
+                        break
+            else:
+                logger.warning("No style selected. Proceeding with default style.")
+
+        job_url = parameters["job_url"]
+        resume_generator = ResumeGenerator()
+        resume_object = Resume(plain_text_resume)
+        driver = init_browser()
+        resume_generator.set_resume_object(resume_object)
+        resume_facade = ResumeFacade(
+            api_key=llm_api_key,
+            style_manager=style_manager,
+            resume_generator=resume_generator,
+            resume_object=resume_object,
+            output_path=Path("data_folder/output"),
+        )
+        resume_facade.set_driver(driver)
+        resume_facade.link_to_job(job_url)
+        result_base64, suggested_name = resume_facade.create_resume_pdf_job_tailored()
+
+        # Decode Base64 to binary data
+        try:
+            pdf_data = base64.b64decode(result_base64)
+        except base64.binascii.Error as e:
+            logger.error("Error decoding Base64: %s", e)
+            raise
+
+        # Define the output directory using `suggested_name`
+        output_dir = Path(parameters["outputFileDirectory"]) / suggested_name
+
+        # Create the directory if it doesn't exist
+        try:
+            output_dir.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Output directory created or already exists: {output_dir}")
+        except IOError as e:
+            logger.error("Error creating output directory: %s", e)
+            raise
+        
+        output_path = output_dir / "resume_tailored_for_indeed.pdf"
+        try:
+            with open(output_path, "wb") as file:
+                file.write(pdf_data)
+            logger.info(f"CV saved at: {output_path}")
+        except IOError as e:
+            logger.error("Error writing file: %s", e)
+            raise
+    except Exception as e:
+        logger.exception(f"An error occurred while creating the CV: {e}")
+        raise
 
 def create_resume_pdf(parameters: dict, llm_api_key: str):
     """
@@ -431,135 +508,3 @@ def create_resume_pdf(parameters: dict, llm_api_key: str):
         resume_generator = ResumeGenerator()
         resume_object = Resume(plain_text_resume)
         driver = init_browser()
-        resume_generator.set_resume_object(resume_object)
-
-        # Create the ResumeFacade
-        resume_facade = ResumeFacade(
-            api_key=llm_api_key,
-            style_manager=style_manager,
-            resume_generator=resume_generator,
-            resume_object=resume_object,
-            output_path=Path("data_folder/output"),
-        )
-        resume_facade.set_driver(driver)
-        result_base64 = resume_facade.create_resume_pdf()
-
-        # Decode Base64 to binary data
-        try:
-            pdf_data = base64.b64decode(result_base64)
-        except base64.binascii.Error as e:
-            logger.error("Error decoding Base64: %s", e)
-            raise
-
-        # Define the output directory using `suggested_name`
-        output_dir = Path(parameters["outputFileDirectory"])
-
-        # Write the PDF file
-        output_path = output_dir / "resume_base.pdf"
-        try:
-            with open(output_path, "wb") as file:
-                file.write(pdf_data)
-            logger.info(f"Resume saved at: {output_path}")
-        except IOError as e:
-            logger.error("Error writing file: %s", e)
-            raise
-    except Exception as e:
-        logger.exception(f"An error occurred while creating the CV: {e}")
-        raise
-
-        
-def handle_inquiries(selected_actions: List[str], parameters: dict, llm_api_key: str):
-    """
-    Decide which function to call based on the selected user actions.
-
-    :param selected_actions: List of actions selected by the user.
-    :param parameters: Configuration parameters dictionary.
-    :param llm_api_key: API key for the language model.
-    """
-    try:
-        if selected_actions:
-            if "Generate Resume" == selected_actions:
-                logger.info("Crafting a standout professional resume...")
-                create_resume_pdf(parameters, llm_api_key)
-                
-            if "Generate Resume Tailored for Job Description" == selected_actions:
-                logger.info("Customizing your resume to enhance your job application...")
-                create_resume_pdf_job_tailored(parameters, llm_api_key)
-                
-            if "Generate Tailored Cover Letter for Job Description" == selected_actions:
-                logger.info("Designing a personalized cover letter to enhance your job application...")
-                create_cover_letter(parameters, llm_api_key)
-
-        else:
-            logger.warning("No actions selected. Nothing to execute.")
-    except Exception as e:
-        logger.exception(f"An error occurred while handling inquiries: {e}")
-        raise
-
-def prompt_user_action() -> str:
-    """
-    Use inquirer to ask the user which action they want to perform.
-
-    :return: Selected action.
-    """
-    try:
-        questions = [
-            inquirer.List(
-                'action',
-                message="Select the action you want to perform:",
-                choices=[
-                    "Generate Resume",
-                    "Generate Resume Tailored for Job Description",
-                    "Generate Tailored Cover Letter for Job Description",
-                ],
-            ),
-        ]
-        answer = inquirer.prompt(questions)
-        if answer is None:
-            print("No answer provided. The user may have interrupted.")
-            return ""
-        return answer.get('action', "")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return ""
-
-
-def main():
-    """Main entry point for the AIHawk Job Application Bot."""
-    try:
-        # Define and validate the data folder
-        data_folder = Path("data_folder")
-        secrets_file, config_file, plain_text_resume_file, output_folder = FileManager.validate_data_folder(data_folder)
-
-        # Validate configuration and secrets
-        config = ConfigValidator.validate_config(config_file)
-        llm_api_key = ConfigValidator.validate_secrets(secrets_file)
-
-        # Prepare parameters
-        config["uploads"] = FileManager.get_uploads(plain_text_resume_file)
-        config["outputFileDirectory"] = output_folder
-
-        # Interactive prompt for user to select actions
-        selected_actions = prompt_user_action()
-
-        # Handle selected actions and execute them
-        handle_inquiries(selected_actions, config, llm_api_key)
-
-    except ConfigError as ce:
-        logger.error(f"Configuration error: {ce}")
-        logger.error(
-            "Refer to the configuration guide for troubleshooting: "
-            "https://github.com/feder-cr/Auto_Jobs_Applier_AIHawk?tab=readme-ov-file#configuration"
-        )
-    except FileNotFoundError as fnf:
-        logger.error(f"File not found: {fnf}")
-        logger.error("Ensure all required files are present in the data folder.")
-    except RuntimeError as re:
-        logger.error(f"Runtime error: {re}")
-        logger.debug(traceback.format_exc())
-    except Exception as e:
-        logger.exception(f"An unexpected error occurred: {e}")
-
-
-if __name__ == "__main__":
-    main()
