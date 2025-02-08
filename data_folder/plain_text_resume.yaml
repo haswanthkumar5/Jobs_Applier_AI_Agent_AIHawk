@@ -1,130 +1,69 @@
-personal_information:
-  name: "[Your Name]"
-  surname: "[Your Surname]"
-  date_of_birth: "[Your Date of Birth]"
-  country: "[Your Country]"
-  city: "[Your City]"
-  address: "[Your Address]"
-  zip_code: "[Your zip code]"
-  phone_prefix: "[Your Phone Prefix]"
-  phone: "[Your Phone Number]"
-  email: "[Your Email Address]"
-  github: "[Your GitHub Profile URL]"
-  linkedin: "[Your LinkedIn Profile URL]"
+contact:
+  name: "Haswanth Kumar Gedela"
+  email: "haswanthkumar.work@gmail.com"
+  phone: "917-603-6664"
+  location: "Jersey City, New Jersey, United States"
+  linkedin: "linkedin.com/in/haswanth-k-g"
 
-education_details:
-  - education_level: "[Your Education Level]"
-    institution: "[Your Institution]"
-    field_of_study: "[Your Field of Study]"
-    final_evaluation_grade: "[Your Final Evaluation Grade]"
-    start_date: "[Start Date]"
-    year_of_completion: "[Year of Completion]"
-    exam:
-      exam_name_1: "[Grade]"
-      exam_name_2: "[Grade]"
-      exam_name_3: "[Grade]"
-      exam_name_4: "[Grade]"
-      exam_name_5: "[Grade]"
-      exam_name_6: "[Grade]"
+summary: "Certified Salesforce Developer with over 3 years of experience in Salesforce CRM implementations, Apex Programming, and CRM Analytics. Proficient in designing and developing custom Salesforce solutions, including Lightning Web Components (LWC), Visualforce, and System Integration using REST/SOAP APIs. Experienced in Agile methodologies, Continuous Integration, data migration, and CI/CD pipelines."
 
-experience_details:
-  - position: "[Your Position]"
-    company: "[Company Name]"
-    employment_period: "[Employment Period]"
-    location: "[Location]"
-    industry: "[Industry]"
-    key_responsibilities:
-      - responsibility_1: "[Responsibility Description]"
-      - responsibility_2: "[Responsibility Description]"
-      - responsibility_3: "[Responsibility Description]"
-    skills_acquired:
-      - "[Skill]"
-      - "[Skill]"
-      - "[Skill]"
+skills:
+  languages: ["C/C++", "Java", "Python", "JavaScript", "TypeScript", "SQL", "HTML", "CSS", "AMPScript", "SSJS"]
+  technologies: ["Salesforce Lightning Framework", "Lightning Web Components (LWC)", "Apex", "Visualforce", "SOQL", "SOSL", "Automation Studio", "Journey Builder", "Mobile Studio", "Git", "Jenkins", "Docker", "Kubernetes", "Copado", "REST/SOAP APIs", "Einstein Orchestrator", "Kafka", "DB2", "Agile", "DevOps", "Version Control", "Versioning", "CI/CD"]
 
-  - position: "[Your Position]"
-    company: "[Company Name]"
-    employment_period: "[Employment Period]"
-    location: "[Location]"
-    industry: "[Industry]"
-    key_responsibilities:
-      - responsibility_1: "[Responsibility Description]"
-      - responsibility_2: "[Responsibility Description]"
-      - responsibility_3: "[Responsibility Description]"
-    skills_acquired:
-      - "[Skill]"
-      - "[Skill]"
-      - "[Skill]"
+experience:
+  - company: "MobiTV"
+    position: "Salesforce Developer"
+    duration: "Sep 2023 - Present"
+    location: "Emeryville, CA, United States"
+    details:
+      - "Designed and developed Salesforce solutions using Lightning Web Components (LWC) to enhance user experience and scalability"
+      - "Automated Salesforce workflows with Apex and JavaScript, improving process efficiency by 35%. Utilized best practices in Data Modeling to ensure effective configuration and customization"
+      - "Integrated Salesforce with external systems via REST APIs, ensuring seamless data flow and increasing data accuracy by 25% through effective Security measures. Resolved critical technical issues in Salesforce configurations, reducing system downtime by 30%"
+      - "Demonstrated ability to maintain integrity and control throughout project lifecycles"
+      - "Collaborated with cross-functional teams to enhance data transformation workflows, increasing accuracy and accessibility"
+
+  - company: "Tata Consultancy Services"
+    position: "Salesforce Developer"
+    duration: "Jul 2021 - Jul 2022"
+    location: "Hyderabad, India"
+    details:
+      - "Developed custom Lightning Web Components (LWCs) tailored to business requirements, increasing operational efficiency by 20% through innovative programming practices"
+      - "Optimized Salesforce workflows and API integrations, improving data processing speeds by 40% while ensuring Data Integrity"
+      - "Delivered customized IT roadmaps, aligning Salesforce capabilities with business objectives and emphasizing strong Security protocols"
+      - "Collaborated with cross-functional teams to gather requirements and implement customized Salesforce solutions with integrity"
+
+  - company: "Ortin Laboratories"
+    position: "Junior Salesforce Developer"
+    duration: "Apr 2020 - Jun 2021"
+    location: "Hyderabad, India"
+    details:
+      - "Built custom Salesforce applications and automated marketing workflows using Salesforce APIs, reducing manual tasks by 15% while adhering to compliance standards"
+      - "Designed and deployed triggers and workflows to enhance campaign management efficiency through effective Control strategies"
+      - "Integrated Salesforce with external systems, enhancing functionality and streamlining data flow with a focus on System Integration"
+      - "Conducted root cause analysis and resolved Salesforce workflow issues promptly while emphasizing continuous improvement and Versioning"
+
+education:
+  - degree: "Master's in Information System"
+    institution: "Stevens Institute of Technology"
+    duration: "Sep 2022 - Apr 2024"
+    gpa: "3.74/4.0"
+    details: ["Data Visualization Application", "Data Analytics & Machine Learning", "Statistical Analysis"]
 
 projects:
-  - name: "[Project Name]"
-    description: "[Project Description]"
-    link: "[Project Link]"
+  - name: "Recommendations Microservice"
+    details:
+      - "Architected and deployed a RESTful eCommerce recommendations microservice using Python, flask-Restx, and industry best practices, with an emphasis on Security"
+      - "Achieved over 97% unit test coverage with TDD and BDD frameworks. Automated deployment using GitHub Actions, Docker, and Kubernetes on IBM Cloud"
 
-  - name: "[Project Name]"
-    description: "[Project Description]"
-    link: "[Project Link]"
-
-achievements:
-  - name: "[Achievement Name]"
-    description: "[Achievement Description]"
-  - name: "[Achievement Name]"
-    description: "[Achievement Description]"
+  - name: "CineInsight: Big Data Analytics on Movies"
+    details:
+      - "Designed an ETL pipeline using MapReduce for data cleaning and merging 10M+ movie records. Utilized Trino SQL querying to analyze trends and built a tableau dashboard for visual insights"
+      - "Optimized query performance by 30% through data partitioning and indexing strategies, enabling faster insights for large-scale datasets"
 
 certifications:
-  - name: "[Certification Name]"
-    description: "[Certification Description]"
-  - name: "[Certification Name]"
-    description: "[Certification Description]"
-
-languages:
-  - language: "[Language]"
-    proficiency: "[Proficiency Level]"
-  - language: "[Language]"
-    proficiency: "[Proficiency Level]"
-
-interests:
-  - "[Interest]"
-  - "[Interest]"
-  - "[Interest]"
-
-availability:
-  notice_period: "[Notice Period]"
-
-salary_expectations:
-  salary_range_usd: "[Salary Range]"
-
-self_identification:
-  gender: "[Gender]"
-  pronouns: "[Pronouns]"
-  veteran: "[Yes/No]"
-  disability: "[Yes/No]"
-  ethnicity: "[Ethnicity]"
-
-
-legal_authorization:
-  eu_work_authorization: "[Yes/No]"
-  us_work_authorization: "[Yes/No]"
-  requires_us_visa: "[Yes/No]"
-  requires_us_sponsorship: "[Yes/No]"
-  requires_eu_visa: "[Yes/No]"
-  legally_allowed_to_work_in_eu: "[Yes/No]"
-  legally_allowed_to_work_in_us: "[Yes/No]"
-  requires_eu_sponsorship: "[Yes/No]"
-  canada_work_authorization: "[Yes/No]"
-  requires_canada_visa: "[Yes/No]"
-  legally_allowed_to_work_in_canada: "[Yes/No]"
-  requires_canada_sponsorship: "[Yes/No]"
-  uk_work_authorization: "[Yes/No]"
-  requires_uk_visa: "[Yes/No]"
-  legally_allowed_to_work_in_uk: "[Yes/No]"
-  requires_uk_sponsorship: "[Yes/No]"
-
-
-work_preferences:
-  remote_work: "[Yes/No]"
-  in_person_work: "[Yes/No]"
-  open_to_relocation: "[Yes/No]"
-  willing_to_complete_assessments: "[Yes/No]"
-  willing_to_undergo_drug_tests: "[Yes/No]"
-  willing_to_undergo_background_checks: "[Yes/No]"
+  - "Salesforce Certified Platform Developer 1"
+  - "Salesforce Administrator ADM 201"
+  - "Salesforce AI Associate"
+  - "Salesforce AI Specialist"
+  - "Salesforce Platform App Builder"
