@@ -505,3 +505,4 @@ def create_resume_pdf(parameters: dict, llm_api_key: str):
         resume_generator = ResumeGenerator()
         resume_object = Resume(plain_text_resume)
         driver = init_browser()
+        resume
